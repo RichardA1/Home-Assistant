@@ -1,1 +1,13 @@
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion_kitchen
 
+action:
+  service: >
+    {% if trigger.to_state.state == "on" %}
+      light.turn_on
+    {% else %}
+      light.turn_off
+    {% endif %}
+  target:
+    entity_id: light.kitchen
